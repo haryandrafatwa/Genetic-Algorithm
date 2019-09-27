@@ -5,6 +5,8 @@
  */
 package genetic_algorithm;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
@@ -15,6 +17,9 @@ public class Kromosom {
     private int panjangKromosom;
     private int[] gen;
     private double fenX1, fenX2, fitness,percRW;
+
+    public Kromosom() {
+    }
 
     public Kromosom(int panjangKromosom) {
         this.panjangKromosom = panjangKromosom;
@@ -70,8 +75,8 @@ public class Kromosom {
         totalX1 = ((6/(9*totxxx1))*totX1)-3;
         totalX2 = ((4/(9*totxxx2))*totX2)-2;
         
-        totalX1 = Double.parseDouble(new DecimalFormat("##.##").format(totalX1));
-        totalX2 = Double.parseDouble(new DecimalFormat("##.##").format(totalX2));
+        //totalX1 = Double.parseDouble(new DecimalFormat("##.##").format(totalX1));
+        //totalX2 = Double.parseDouble(new DecimalFormat("##.##").format(totalX2));
         
         fenX1 = totalX1;
         fenX2 = totalX2;
@@ -79,13 +84,17 @@ public class Kromosom {
     
     public double calcH(){
         double x = ((4-((Math.pow(fenX1, 2))*2*1)+(Math.pow(fenX1, 4)/3))*Math.pow(fenX1, 2) + fenX1*fenX2+(-4+(Math.pow(fenX2, 2))*4)*Math.pow(fenX2, 2));
-        x = Double.parseDouble(new DecimalFormat("##.####").format(x));
+        //x = Double.parseDouble(new DecimalFormat("##.####").format(x));
         return x;
     }
     
     public void calcFitness(){
-        double x = Double.parseDouble(new DecimalFormat("##.####").format(1/(calcH()+0.1)));
-        setFitness(x);
+        //double x = Double.parseDouble(new DecimalFormat("##.####").format(1/(calcH()+0.1)));
+        double x = 1/(calcH()+0.1);
+        double y = Math.pow(x, 2);;
+        BigDecimal a = new BigDecimal(y);
+        BigDecimal roundOff = a.setScale(4, BigDecimal.ROUND_HALF_EVEN);
+        setFitness(y);
     }
     
     public static double getRandomIntegerBetweenRange(double min, double max){
@@ -113,5 +122,13 @@ public class Kromosom {
         for (int i = 0; i < gen.length; i++) {
             System.out.print(gen[i]+" ");
         }
+    }
+    
+    public int[] getGens(){
+        return this.gen;
+    }
+
+    public void setGen(int[] gen) {
+        this.gen = gen;
     }
 }

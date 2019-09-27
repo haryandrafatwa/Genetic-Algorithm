@@ -1,4 +1,0 @@
-genetic_algorithm.Population
-genetic_algorithm.tes
-genetic_algorithm.Individual
-genetic_algorithm.SimpleDemoGA

@@ -20,7 +20,7 @@ public class Genetic_Algorithm {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        int[] kromList;
+        Populasi[] popList;
         
         Scanner ipt = new Scanner(System.in);
         
@@ -30,14 +30,36 @@ public class Genetic_Algorithm {
 //        int panjangKromosom = ipt.nextInt();
 //        System.out.print("Banyak Populasi: ");
 //        int banyakPopulasi = ipt.nextInt();
+            
+        popList = new Populasi[4];
         
-        Populasi populasi = new Populasi(10,10);
-        //populasi.encFenotipe();
-        populasi.getPop(); 
+        double max = 0;
+        for (int i = 0; i < popList.length; i++) {
+            popList[i] = new Populasi(4,4);
+            //populasi.encFenotipe();
+            popList[i].getPop(); 
+            System.out.println("");
+            System.out.println("");
+            popList[i].getPopDetail();
+            popList[i].getRoulette();
+            popList[i].setParent();
+            System.out.println("");
+            popList[i].getParent();
+            popList[i].crossOver();
+            System.out.println("");
+            popList[i].getParent();
+            popList[i].mutasi();
+            System.out.println("");
+            popList[i].getParent();
+            System.out.println("");
+            popList[i].getBFittest();
+            System.out.println(popList[i].getFittest());
+            if (popList[i].getFittest() > max) {
+                max = popList[i].getFittest();
+            }
+        }
         System.out.println("");
-        System.out.println("");
-        populasi.getPopDetail();
-        
+        System.out.println(max);
     }
     
 }
